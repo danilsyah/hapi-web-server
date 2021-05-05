@@ -32,8 +32,22 @@ const routes = [
           path: "/users/{username?}",
           handler: (request, h) => {
                const { username = "test" } = request.params;
+               const { lang } = request.query;
+
+               if(lang === 'id'){
+                    return `Hai, ${username}!`;
+               }
+
                return `Hello, ${username}`;
           },
+     },
+     {
+          method: 'POST',
+          path: '/login',
+          handler: (request, h)=>{
+               const {username, password} = request.payload;
+               return `Welcome ${username}`
+          }
      },
      {
           method: "*",
